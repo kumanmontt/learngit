@@ -122,8 +122,39 @@ def hundred_chicken():
 否则游戏继续 玩家继续摇色子
 玩家进入游戏时有1000元的赌注 全部输光游戏结束
 '''
+from random import randint 
+def craps():
+    money = 1000
+    needs_go_on = True
+    def if_continue():
+            if money >0:
+                x = input("Do you want to continue?please enter Y(yes) or N(no) ")
+                if x == 'Y':
+                    needs_go_on = True
+                else:
+                    needs_go_on = False
+            else:
+                needs_go_on = False
+    while needs_go_on:
+        print('你的总资产为:%d'%money)
+        debt = int(input("please enter the debt"))
+        if debt >0 and debt <money:
+            break
+        pointfirst = random.randint(1,6) + random.randint(1,6)
+        if pointfirst ==7 or pointfirst ==11:
+            print("the player wins")
+            money +=debt
+            if_continue()
+        elif pointfirst ==2 or pointfirst ==3 or pointfirst ==12:
+            print("the banker wins")
+            money -=debt
+            if_continue()
+        
+        
+        
     
-    
+        
+        
         
             
         
