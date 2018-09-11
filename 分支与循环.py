@@ -125,37 +125,105 @@ def hundred_chicken():
 from random import randint 
 def craps():
     money = 1000
-    needs_go_on = True
-    def if_continue():
-            if money >0:
-                x = input("Do you want to continue?please enter Y(yes) or N(no) ")
-                if x == 'Y':
-                    needs_go_on = True
-                else:
-                    needs_go_on = False
-            else:
+    while money >0:
+        print('你的总资产为:',money)
+        needs_go_on = False
+        while True:
+            debt = int(input('请下注：'))
+            if debt >0 and  debt <= money:
+                break
+        first = randint(1,6)+ randint(1,6)
+        print('玩家摇出了%d点'%first)
+        if first ==7 or first ==11:
+            print('玩家胜！')
+            money += debt
+        elif first ==2 or first ==3 or first ==12:
+            print('庄家胜！')
+            money -= debt
+        else:
+            needs_go_on = True
+            
+        while needs_go_on:
+            current = randint(1,6)+randint(1,6)
+            print('玩家摇出了%d点'% current)
+            if current ==7:
+                print('庄家胜')
+                money -=debt
                 needs_go_on = False
-    while needs_go_on:
-        print('你的总资产为:%d'%money)
-        debt = int(input("please enter the debt"))
-        if debt >0 and debt <money:
-            break
-        pointfirst = random.randint(1,6) + random.randint(1,6)
-        if pointfirst ==7 or pointfirst ==11:
-            print("the player wins")
-            money +=debt
-            if_continue()
-        elif pointfirst ==2 or pointfirst ==3 or pointfirst ==12:
-            print("the banker wins")
-            money -=debt
-            if_continue()
-        
-        
-        
+            elif current == first:
+                print('玩家胜')
+                money +=debt
+                needs_go_on = False
+    print('你破产了，游戏结束')
+
     
-        
-        
-        
+#斐波那契数列   
+'''
+输出斐波那契数列的前20个数
+1 1 2 3 5 8 13 21 ...
+'''  
+def Fibonacci():
+    a =0
+    b =1
+    for i in range(20):
+        (a,b) = (b,a+b)
+        print(a,end = ' ')      
+
+#水仙花数
+'''
+找出100-999之间的所有水仙花数
+水仙花数是各位立方和等于这个数本身的数
+比如： 153 = 1**3 + 5**3 + 3**3
+'''
+def lily():
+    lily = []
+    for i in range(100,1000):
+        hundred = i//100
+        ten = (i -hundred*100)//10
+        position = (i -hundred*100-ten*10)
+        if i == pow(hundred,3)+pow(ten,3)+pow(position,3):
+            lily.append(i)
+    print('水仙花数有',lily)
+    
+#回文数
+'''
+判断输入的正整数是不是回文数
+回文数是指将一个正整数从左到右和从右到左排列值一样的数
+'''
+def palindrome():
+    number = input("please input a number")
+    return number == number[::-1]
+    
+
+#完美数
+'''
+找出1~9999之间的所有完美数
+完美数是除自身外其他所有因子的和正好等于这个数本身的数
+例如：6 = 1+2+3 ,28 = 1+2+4+7+14
+'''      
+def perfect():
+    for i in range(1,10000):
+        perfect = []
+        for n in range(1,i):
+            if i%n ==0:
+                perfect.append(n)
+        numb = 0
+        for m in perfect:
+            numb +=m
+        if numb ==i:
+            print('%d是完美数'%i)
+            
+            
+            
+#输出九九乘法表
+for i in range(1,10):
+      for j in range(1,10):
+          print('%d*%d=%d' %(i,j,i*j),end= '\t')
+      print()
+            
+                    
+                
+
             
         
     
