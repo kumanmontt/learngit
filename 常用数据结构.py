@@ -217,16 +217,36 @@ def which_day(year,month,day):
     print('%d年%d月%d日是这一年的第%d天'%(year,month,day,total))
         
 #打印杨辉三角
+def yanghui_triangle():
+    num = int(input('Number of rows:'))
+    yh = [[]] * num
+    for row in range(len(yh)):
+        yh[row] = [None] * (row+1)
+        for col in range(len(yh[row])):
+            if col ==0 or col == row:#是每行的第一个或者是最后一个
+                yh[row][col] = 1#他的值就为1
+            else:#否则就是上一行该列的值加上上一行前一列的值
+                yh[row][col] = yh[row -1][col] +yh[row -1][col -1]
+            print(yh[row][col],end='\t')
+        print()
 
+#约瑟夫环问题
+'''
+有15个基督徒和15个非基督徒在海上遇险，为了能让一部分人活下来不得不将15个人扔到海里面
+有一个人想了一个办法就是大家围成一个圈，有某人开始从1报数，报到9的就扔海里面，他后面的人接着从1开始报数
+报到9的人继续扔到海里面，直到扔掉15个人。由于上帝的保佑。15个基督徒都幸免遇难，问这些人最开始是怎么站的，哪些位置是基督徒哪些位置是非基督徒
+'''
+def joseph():
+    people_index = [i for i in range(1,31)]
+    people_throwed = 0
+    while people_throwed<15:
+        people_index = people_index[9:] +people_index[0:8]
+        people_throwed +=1
+    print(people_index)
+        
+        
 
-
-
-
-
-
-
-
-
+    
 
 
 
